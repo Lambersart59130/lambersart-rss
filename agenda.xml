@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Agenda de la Ville de Lambersart</title>
+    <link>https://lambersart.fr/agenda</link>
+    <description>Les événements à venir à Lambersart</description>
+    <language>fr</language>
+    <lastBuildDate>Sat, 05 Apr 2025 12:00:00 +0200</lastBuildDate>
+    <item>
+      <title>Exemple d'événement</title>
+      <link>https://lambersart.fr/agenda/evenement-exemple</link>
+      <guid isPermaLink="true">https://lambersart.fr/agenda/evenement-exemple</guid>
+      <pubDate>Tue, 08 Apr 2025 14:00:00 +0200</pubDate>
+      <description><![CDATA[Un exemple d'événement culturel à Lambersart.]]></description>
+    </item>
+  </channel>
+</rss>

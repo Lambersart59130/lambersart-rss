@@ -24,18 +24,15 @@ jobs:
       - name: Generate feed.xml
         run: python generate_rss.py
 
-      - name: Commit and push to gh-pages
+      - name: Push to separate repo
         run: |
-          git config --global user.name "Lambersart"
-          git config --global user.email "ville@lambersart.fr"
-          git fetch origin gh-pages || git checkout --orphan gh-pages
-          git checkout gh-pages
-          cp feed.xml ./feed.xml
+          git clone https://x-access-token:${{ secrets.FEED_PUSH_TOKEN }}@github.com/Lambersart59130/lambersart-rss-feed.git out
+          cd out
+          git checkout --orphan gh-pages
+          rm -rf .
+          cp ../feed.xml .
+          git config user.name "Lambersart"
+          git config user.email "ville@lambersart.fr"
           git add feed.xml
-          git commit -m "Update feed.xml" || echo "No changes to commit"
-          git push origin gh-pages
-        env:
-          GIT_AUTHOR_NAME: Lambersart
-          GIT_AUTHOR_EMAIL: ville@lambersart.fr
-          GIT_COMMITTER_NAME: Lambersart
-          GIT_COMMITTER_EMAIL: ville@lambersart.fr
+          git commit -m "Update feed"
+          git push -f origin gh-pages

@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -24,14 +24,18 @@ jobs:
       - name: Generate feed.xml
         run: python generate_rss.py
 
-      - name: Configure git
+      - name: Commit and push to gh-pages
         run: |
           git config --global user.name "Lambersart"
           git config --global user.email "ville@lambersart.fr"
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
-          publish_branch: gh-pages
+          git fetch origin gh-pages || git checkout --orphan gh-pages
+          git checkout gh-pages
+          cp feed.xml ./feed.xml
+          git add feed.xml
+          git commit -m "Update feed.xml" || echo "No changes to commit"
+          git push origin gh-pages
+        env:
+          GIT_AUTHOR_NAME: Lambersart
+          GIT_AUTHOR_EMAIL: ville@lambersart.fr
+          GIT_COMMITTER_NAME: Lambersart
+          GIT_COMMITTER_EMAIL: ville@lambersart.fr

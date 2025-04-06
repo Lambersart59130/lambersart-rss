@@ -23,6 +23,10 @@ jobs:
 
       - name: Generate feed.xml
         run: python generate_rss.py
+      - name: Configure git
+        run: |
+          git config --global user.name "Lambersart"
+          git config --global user.email "ville@lambersart.fr"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

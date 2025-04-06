@@ -1,2 +1,1 @@
-ceci est un test pour forcer le déclenchement du workflow
-
+Ceci est un fichier de test pour forcer le commit initial.
